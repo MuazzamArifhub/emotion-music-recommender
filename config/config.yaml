@@ -1,0 +1,76 @@
+# Emotion Music Recommender - Configuration
+# All runtime settings for the ML pipeline
+
+# ---------------------------------------------------------------------------
+# Model settings
+# ---------------------------------------------------------------------------
+model:
+  name: "bhadresh-savani/distilbert-base-uncased-emotion"
+    device: null          # auto-detect: cuda > mps > cpu
+      max_length: 128
+        confidence_threshold: 0.0
+
+        # ---------------------------------------------------------------------------
+        # Preprocessor settings
+        # ---------------------------------------------------------------------------
+        preprocessor:
+          lowercase: true
+            expand_contractions: true
+              remove_urls: true
+                remove_punctuation: false
+                  max_words: null       # no truncation by default
+
+                  # ---------------------------------------------------------------------------
+                  # Recommender settings
+                  # ---------------------------------------------------------------------------
+                  recommender:
+                    top_k: 3
+                      seed: 42
+
+                      # ---------------------------------------------------------------------------
+                      # Supported emotions and their music profiles
+                      # ---------------------------------------------------------------------------
+                      emotions:
+                        joy:
+                            genres: ["Pop", "Dance / EDM", "Funk"]
+                                bpm_range: [120, 140]
+                                    mood: "Uplifting"
+                                      sadness:
+                                          genres: ["Indie Folk", "Blues", "Classical Piano"]
+                                              bpm_range: [60, 80]
+                                                  mood: "Melancholic"
+                                                    anger:
+                                                        genres: ["Metal", "Hard Rock", "Drum and Bass"]
+                                                            bpm_range: [140, 180]
+                                                                mood: "Intense"
+                                                                  fear:
+                                                                      genres: ["Ambient", "Classical"]
+                                                                          bpm_range: [50, 70]
+                                                                              mood: "Calm"
+                                                                                surprise:
+                                                                                    genres: ["Electronic / Glitch", "Jazz Fusion"]
+                                                                                        bpm_range: [110, 130]
+                                                                                            mood: "Energetic"
+                                                                                              disgust:
+                                                                                                  genres: ["Punk", "Grunge"]
+                                                                                                      bpm_range: [130, 160]
+                                                                                                          mood: "Raw"
+                                                                                                            neutral:
+                                                                                                                genres: ["Lo-fi Hip Hop", "Jazz", "Acoustic Pop"]
+                                                                                                                    bpm_range: [70, 90]
+                                                                                                                        mood: "Relaxed"
+                                                                                                                        
+                                                                                                                        # ---------------------------------------------------------------------------
+                                                                                                                        # Logging
+                                                                                                                        # ---------------------------------------------------------------------------
+                                                                                                                        logging:
+                                                                                                                          level: "INFO"
+                                                                                                                            format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+                                                                                                                              datefmt: "%Y-%m-%d %H:%M:%S"
+                                                                                                                              
+                                                                                                                              # ---------------------------------------------------------------------------
+                                                                                                                              # Output
+                                                                                                                              # ---------------------------------------------------------------------------
+                                                                                                                              output:
+                                                                                                                                pretty_print: true
+                                                                                                                                  indent: 2
